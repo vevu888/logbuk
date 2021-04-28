@@ -1,0 +1,16 @@
+---
+test:
+  hosts:
+    localhost
+  vars:
+    # something intelligent
+staging:
+  hosts:
+    localhost.VM2
+  vars:
+    # something intelligent
+production:
+  hosts:
+    localhost.VM3
+  vars:
+    # something intelligent

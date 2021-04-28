@@ -1,0 +1,16 @@
+---
+- hosts:
+    test
+  become: yes
+  vars:
+    # variables needed for each role
+  roles:
+    - prepare
+    - docker
+    - docker_fluentd_pre
+    - docker_kafka
+    - docker_fluentd_post
+    - docker_odelastic
+    - docker_odkibana
+    - docker_prometheus
+    - docker_grafana
