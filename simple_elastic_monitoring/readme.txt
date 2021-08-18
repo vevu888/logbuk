@@ -1,0 +1,12 @@
+This linux script performs 3 queries in ElasticSearch.
+
+Each query returns a single value.
+
+If a value is returned by at least 1 query then you can draw 2 conclusions:
+ 1. ElasticSearch is online
+ 2. New data is successfully ingested.
+
+The script prints the status code of the curl http request.
+
+If it's 200 then everything is ok.
+If it's not 200, then there is a problem.
