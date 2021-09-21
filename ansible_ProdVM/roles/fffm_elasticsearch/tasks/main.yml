@@ -1,0 +1,170 @@
+---
+# tasks file for fffm_elasticsearch
+
+- block:
+
+  - name: Place key file
+    copy:
+      src: elasticsearch.key
+      dest: /root/elasticsearch.key
+      owner: root
+      group: root
+      mode: 0644
+
+  tags:
+    - place-key
+
+- block:
+
+  - name: Install prerequisites - Debian
+    apt:
+      name:
+      - apt-transport-https
+      - openjdk-11-jre-headless
+    when: ansible_os_family == "Debian"
+  - name: Install prerequisites - RedHat
+    yum:
+      name: 
+      - java-11-openjdk-headless
+      state: present
+    when: ansible_os_family == "RedHat"
+
+  - name: Add elasticsearch key from a file
+    apt_key:
+      file: /root/elasticsearch.key
+      state: present
+    when: ansible_os_family == "Debian"
+  - name: Install yum repo.
+    yum:
+      name: elasticsearch
+      state: present
+    when: ansible_os_family == "RedHat"
+  - name: Import yum GPG key.
+    rpm_key:
+      key: GPG-KEY-elasticsearch 
+      state: present
+    when: ansible_os_family == "RedHat"
+  - name: Add elasticsearch repository
+    apt_repository:
+      repo: deb http://linux-mirror.zeiss.org/linux/elastic_7.x stable main
+      filename: elasticsearch
+      state: present
+      update-cache: no
+
+    when: ansible_os_family == "Debian"
+  - name: Update package index
+    apt:
+      update_cache: yes
+
+    when: ansible_os_family == "Debian"
+  - name: Install ELK
+    apt:
+      name:
+      - logstash
+      - elasticsearch
+      - kibana
+
+    when: ansible_os_family == "Debian"
+  - name: Clone python-logstash repo for testing purposes
+    git:
+      repo: https://github.com/vklochan/python-logstash.git
+      dest: /opt/python-logstash
+      force: yes
+
+  tags:
+    - apt-install
+
+- block:
+
+  - name: Fill logstash configuration file template
+    template:
+      src: "{{ fffm_elasticsearch_logstash_conf }}"
+      dest: /etc/logstash/logstash.conf
+      owner: root
+      group: root
+      mode: 0644
+    notify:
+      - Restart logstash
+
+  - name: Fill logstash settings file template
+    template:
+      src: "{{ fffm_elasticsearch_logstash_yml }}"
+      dest: /etc/logstash/logstash.yml
+      owner: root
+      group: root
+      mode: 0644
+      backup: yes
+    notify:
+      - Restart logstash
+
+  - name: Enable Logstash service
+    service:
+      name: logstash
+      enabled: yes
+
+  tags:
+    - configure-logstash
+
+- block:
+  - name: create folder for elasticsearch backup
+    file:
+      path: /data/elasticsearch/backups
+      state: directory
+      owner: elasticsearch
+      group: elasticsearch
+      mode: 0775
+    when: enable_elasticsearch_backuppath 
+
+  - name: create folder for elasticsearch backup
+    file:
+      path: /data/elasticsearch/longterm_backups
+      state: directory
+      owner: elasticsearch
+      group: elasticsearch
+      mode: 0775
+    when: enable_elasticsearch_backuppath 
+  - name: Fill elasticsearch jvm.option file template
+    template:
+      src: "{{ fffm_elasticsearch_jvm_options_yml }}"
+      dest: /etc/elasticsearch/jvm.options
+      owner: elasticsearch
+      group: elasticsearch
+      mode: 0640
+    when: fffm_elasticsearch_jvm_options_yml is defined
+  - name: Fill elasticsearch configuration file template
+    template:
+      src: "{{ fffm_elasticsearch_elasticsearch_yml }}"
+      dest: /etc/elasticsearch/elasticsearch.yml
+      owner: root
+      group: root
+      mode: 0644
+    notify:
+      - Restart elasticsearch
+
+  - name: Enable Elasticsearch service
+    service:
+      name: elasticsearch
+      enabled: yes
+
+  tags:
+    - configure-elasticsearch
+
+- block:
+
+  - name: Fill Kibana configuration file template
+    template:
+      src: "{{ fffm_elasticsearch_kibana_yml }}"
+      dest: /etc/kibana/kibana.yml
+      owner: root
+      group: root
+      mode: 0644
+    notify:
+      - Restart kibana
+
+  - name: Enable Kibana service
+    service:
+      name: kibana
+      enabled: yes
+
+  tags:
+    - configure-kibana

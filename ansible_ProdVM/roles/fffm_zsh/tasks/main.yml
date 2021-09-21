@@ -1,0 +1,57 @@
+---
+# tasks file for fffm_zsh
+
+- name: update package index
+  apt: update_cache=yes
+  tags: long-tasks
+  when: ansible_os_family == "Debian"
+- name: install packages
+  apt: package=zsh state=present
+  when: ansible_os_family == "Debian"
+
+- name: update package index - Redhat
+  yum: update_cache=yes
+  when: ansible_os_family == "RedHat"
+  tags: long-tasks
+- name: install packages
+  yum: 
+    name: zsh
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: do chsh command
+  shell: chsh -s $(which zsh) "{{ item }}"
+  with_items: "{{ fffm_zsh_users }}"
+  changed_when: false
+
+- name: use GRML configuration for zsh - RedHat
+  copy: 
+    src: files/zshrc_grml
+    dest: "/etc/zshrc"
+    owner: "root"
+    group: "root"
+    mode: 064
+  when: fffm_zsh_grml_config and ansible_os_family == "RedHat"
+
+- name: use GRML configuration for zsh - Debian
+  copy: 
+    src: files/zshrc_grml
+    dest: "/etc/zsh/zshrc"
+    owner: "root"
+    group: "root"
+    mode: 064
+  when: fffm_zsh_grml_config and ansible_os_family == "Debian"
+- name: place user .zshrc
+  copy: >
+    src=files/zshrc_user dest="/home/{{ item }}/.zshrc"
+    owner="{{ item }}" group="{{ item }}" mode=0644
+  when: item != "root"
+  with_items: "{{ fffm_zsh_users }}"
+
+- name: place root .zshrc
+  copy: >
+    src=files/zshrc_user dest="/{{ item }}/.zshrc"
+    owner="{{ item }}" group="{{ item }}" mode=0644
+  when: item == "root"
+  with_items: "{{ fffm_zsh_users }}"
+    

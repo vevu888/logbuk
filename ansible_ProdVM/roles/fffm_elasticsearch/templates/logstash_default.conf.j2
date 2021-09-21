@@ -1,0 +1,17 @@
+# {{ fffm_elasticsearch_header }}
+
+input {
+  tcp {
+    port => 5959
+    codec => json
+  }
+}
+
+filter {
+}
+
+output {
+  stdout {
+    codec => rubydebug
+  }
+}

@@ -1,0 +1,25 @@
+---
+# defaults file for fffm_common
+fffm_common_version: "0.1"
+fffm_common_header: "This file is managed by Ansible role fffm_common, all changes will be lost!"
+fffm_common_packages_debian:
+  - htop
+  - tree
+  - tmux
+  - dnsutils
+  - psmisc
+  - tcpdump
+  - iotop
+  - iftop
+  - netcat-openbsd
+fffm_common_packages_redhat:
+  - htop
+  - tree
+  - tmux
+  - bind-utils
+  - psmisc
+  - tcpdump
+  - iotop
+  - iftop
+  - nmap-ncat
+fffm_tmux_users: ['root']

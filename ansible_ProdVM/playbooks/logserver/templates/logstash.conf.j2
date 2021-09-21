@@ -1,0 +1,228 @@
+# {{ fffm_elasticsearch_header }}
+
+input {
+{% if enable_logstash_input_tcp %}
+  tcp {
+    port => 5959
+    codec => json
+  }
+{% endif %}
+{% if enable_logstash_input_amqp_testing %}
+  rabbitmq {
+    host => "zdeoko04sirmq01.deoko.zeiss.org"
+    port => 5671
+    user => "{{ rabbitmq_user }}"
+    password => "{{ rabbitmq_password }}"
+    ssl => true
+    ssl_certificate_password => "{{ ssl_certificate_password }}"
+    ssl_certificate_path => "{{ ssl_certificate_path }}"
+    subscription_retry_interval_seconds => 5
+    vhost => "dft"
+    queue => "VU1_Elastic_Shared_LTDS"
+    passive => true
+    tags => [ "_vu1", "_testing" ]
+  }
+{% endif %}
+{% if enable_logstash_input_amqp_productive %}
+  rabbitmq {
+    host => "smt-mdb.zeiss.org"
+    port => 5671
+    user => "{{ rabbitmq_user }}"
+    password => "{{ rabbitmq_password }}"
+    ssl => true
+    ssl_certificate_password => "{{ ssl_certificate_password }}"
+    ssl_certificate_path => "{{ ssl_certificate_path }}"
+    subscription_retry_interval_seconds => 5
+    vhost => "dfm"
+    queue => "VU1_Elastic_Shared_LTDS"
+    passive => true
+    tags => [ "_vu1" ]
+    exchange => "amq.direct"
+    key => "VU1_Elastic_Shared_LTDS"
+  }
+  rabbitmq {
+    host => "smt-mdb.zeiss.org"
+    port => 5671
+    user => "{{ rabbitmq_user }}"
+    password => "{{ rabbitmq_password }}"
+    ssl => true
+    ssl_certificate_password => "{{ ssl_certificate_password }}"
+    ssl_certificate_path => "{{ ssl_certificate_path }}"
+    subscription_retry_interval_seconds => 5
+    vhost => "dfm"
+    queue => "VU2_Elastic_Shared_LTDS"
+    passive => true
+    tags => [ "_vu2" ]
+    exchange => "amq.direct"
+    key => "VU2_Elastic_Shared_LTDS"
+  }
+{% endif %}
+}
+
+filter {
+{% if enable_logstash_filters %}
+
+  #### PARSING DATE AND TIME ####
+
+  # Replace @timestamp field with the creation timestamp
+  date {
+    match => [ "[payload][timestamp]", "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" ]
+    target => "[payload][timestamp]"
+    tag_on_failure => ["_date_format_error"]
+  }
+  date {
+    match => [ "[header][timestamp]", "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" ]
+    target => "[header][timestamp]"
+    tag_on_failure => ["_date_format_error"]
+  }
+  # Add field for latency, calculating the delta between header and payload timestamp
+  ruby {
+    #init => "require 'time'"
+    code => '
+      latency = (event.get("[header][timestamp]") - event.get("[payload][timestamp]"))
+      event.set("latency", latency);
+    '
+  }
+  # Tag invalid (i.e. too old) timestamps
+  ruby {
+    code => '
+      if event.get("[payload][timestamp]") < LogStash::Timestamp.new(Time.parse("2020-01-01"))
+        event.tag("_date_range_error")
+# Do not replace the timestamp
+#      else
+#        event.set("@timestamp", event.get("[payload][timestamp]"))
+      end
+
+      if event.get("[header][timestamp]") < LogStash::Timestamp.new(Time.parse("2020-01-01"))
+        event.tag("_date_range_error")
+      end
+    '
+  }
+
+  #### TAGGING BASED ON PROFILE ####
+
+  # Tagging rules for message logs
+  if ( [header][profile] == "MessageLog" ) {
+    # Tag, if payload.type is invalid
+    if ! ( [payload][type] in ["CMD", "ACK", "NACK", "WARNING", "NOTE", "DONE", "ERROR", "ABORTED"] ) {
+      mutate {
+        add_tag => ["_invalid_type_error"]
+      }
+    }
+  }
+  # Tagging rules for program alarms
+  else if ( [header][profile] == "alarm" or [header][profile] == "ProgramAlarm") {
+    # Tag, if payload.type is invalid
+    if ! ( [payload][type] in ["ALARM", "WARN", "INFO"] ) {
+      mutate {
+        add_tag => ["_invalid_type_error"]
+      }
+    }
+    # Tag, if payload.state is invalid
+    if ! ( [payload][state] in ["SET", "CLR", "ACK"] ) {
+      mutate {
+        add_tag => ["_invalid_state_error"]
+      }
+    }
+    # Tag, if required fields are not present
+    if ( "" not in [payload][mCode] ) {
+      mutate {
+        add_tag => ["_incomplete_error"]
+      }
+    }
+  }
+  # Tagging rules for sensor data
+  else if ( [header][profile] == "sd" ) {
+    # Tag, if payload.unit is invalid
+    if ! ( [payload][unit] in ["#", "1", "3-state", "A", "A/m^2", "C", "F", "Hz", "J", "K", "N", "N/m", "Nm", "V", "V/m", "W", "bar", "bar/bar", "cd", "cd/m^2", "dB", "deg", "degC", "kg", "kg/kg", "kg/m^3", "l/l", "lm", "m", "m/s", "m/s^2", "m^2", "m^3", "m^3/s", "mol", "ohm", "r/s", "rad", "rad/s", "rad/s^2", "s", "state" ] ) {
+      mutate {
+        add_tag => ["_invalid_unit_error"]
+      }
+    }
+    # Tag, if payload.type is invalid
+    if ! ( [payload][type] in ["Acceleration", "AmountOfSubstance", "Angle", "AngularAcceleration", "AngularFrequency", "AngularVelocity", "Area", "AxisPosition", "Capacitance", "Counter", "CurrentDensity", "Density", "DepositionRate", "ElectricCharge", "ElectricCurrent", "ElectricFieldStrength", "ElectricPotential", "Force", "Frequency", "Index", "Length", "Luminance", "LuminousFlux", "LuminousIntensity", "Mass", "MassRatio", "MomentOfForce", "Particle", "Period", "Power", "Pressure", "PressureRatio", "Ratio", "Resistance", "RotationalFrequency", "SoundPower", "SoundPressureLevel", "SoundReductionIndex", "SurfaceTension", "Switch2Way", "Switch3Way", "Temperature", "Thermodynamic", "Time", "Velocity", "Volume", "VolumeFlowRate", "VolumeRatio", "Wavelength", "Work" ] ) {
+      mutate {
+        add_tag => ["_invalid_type_error"]
+      }
+    }
+  }
+  # Tag log events as "_unknown" when they have an unknown profile
+  else {
+    mutate {
+      add_tag => ["_unknown"]
+    }
+  }
+
+  #### FURTHER PROCESSING FOR MESSAGE LOGS ####
+
+  if ( [header][profile] == "MessageLog" ) {
+    dissect {
+      mapping => {
+        "[payload][content]" => "%{?messagetype}:%{?messageidentifier}:%{[payload][cmdid][meas]}:%{[payload][cmdid][d100]}:%{[payload][cmdid][lc]}:%{[payload][cmdid][mh]}:%{[payload][cmdid][ltds]}:%{[payload][cmdid][osc]}:%{[payload][cmdid][sc]}:%{[payload][cmdid][sub]}:%{[payload][cmdid][comp]}:%{[payload][cmddest][mod]}:%{[payload][cmddest][sub]}:%{[payload][cmddest][comp]}:%{[payload][cmdarguments]}"
+      }
+      tag_on_failure => ["_dissect_error"]
+      remove_field => "[payload][content]"
+    }
+  }
+
+  #### FURTHER PROCESSING FOR PROGRAM ALARMS ####
+
+  if ( [header][profile] == "alarm" or [header][profile] == "ProgramAlarm") {
+    dissect {
+      mapping => {
+        "[payload][content]" => "%{[payload][infotext]}##%{[payload][entityname]}:%{?reserved1}:%{?reserved2}:%{[payload][category]}:%{[payload][msgid]}:%{[payload][cmdid][meas]}:%{[payload][cmdid][d100]}:%{[payload][cmdid][lc]}:%{[payload][cmdid][mh]}:%{[payload][cmdid][ltds]}:%{[payload][cmdid][osc]}:%{[payload][cmdid][sc]}:%{[payload][cmdid][sub]}:%{[payload][cmdid][comp]}:%{[payload][rkz]}:%{[payload][userspecific]}"
+      }
+      tag_on_failure => ["_dissect_error"]
+      remove_field => "[payload][content]"
+    }
+  }
+
+  #### FILTERS FOR FINAL CONSOLIDATION ####
+  #added type to temperature value
+  if ( [payload][value] ) {
+    mutate {
+      convert => {
+        "[payload][value]" => "float"
+      }
+    }
+  }
+
+  if ( [payload][values] ) {
+    mutate {
+      convert => {
+        "[payload][values]" => "float"
+      }
+    }
+  }
+  # Convert command IDs, if present
+  if ( [payload][cmdid] ) {
+    mutate {
+      convert => {
+        "[payload][cmdid][meas]" => "integer"
+        "[payload][cmdid][d100]" => "integer"
+        "[payload][cmdid][lc]" => "integer"
+        "[payload][cmdid][mh]" => "integer"
+        "[payload][cmdid][ltds]" => "integer"
+        "[payload][cmdid][osc]" => "integer"
+        "[payload][cmdid][sc]" => "integer"
+        "[payload][cmdid][sub]" => "integer"
+        "[payload][cmdid][comp]" => "integer"
+      }
+    }
+  }
+{% endif %}
+}
+
+output {
+{% if enable_logstash_output_elasticsearch %}
+  elasticsearch {
+    hosts => [ "localhost:9200" ]
+    index => ["ltds-%{+yyyy.MM.dd}-v002"]
+  }
+{% endif %}
+{% if enable_logstash_output_stdout %}
+  stdout {
+    codec => rubydebug
+  }
+{% endif %}
+}

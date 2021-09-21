@@ -1,0 +1,23 @@
+# {{ fffm_elasticsearch_header }}
+
+# ---------- Network -----------------------------------------
+
+{% if enable_elasticsearch_api_globally %}
+network.host: [ "_local_", "{{ ansible_default_ipv4.address }}" ]
+{% else %}
+network.host: localhost
+{% endif %}
+
+
+http.port: 9200
+
+# ---------- Paths -------------------------------------------
+
+path.data: /var/lib/elasticsearch
+path.logs: /var/log/elasticsearch
+{% if enable_elasticsearch_backuppath %}
+path.repo: [ "/data/elasticsearch/backups", "/data/elasticsearch/longterm_backups" ]
+{% endif %}
+# ---------- Cluster -------------------------------------------
+discovery.type: single-node
+ 

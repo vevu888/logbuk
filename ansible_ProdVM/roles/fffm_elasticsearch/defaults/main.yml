@@ -1,0 +1,8 @@
+---
+# defaults file for fffm_elasticsearch
+fffm_elasticsearch_header: "This file is managed by Ansible role fffm_elasticsearch, all changes will be lost!"
+fffm_elasticsearch_logstash_conf: "logstash_default.conf.j2"
+fffm_elasticsearch_logstash_yml: "logstash_default.yml.j2"
+fffm_elasticsearch_elasticsearch_yml: "elasticsearch_default.yml.j2"
+fffm_elasticsearch_jvm_options_yml: "elastic_jvm.options.j2"
+fffm_elasticsearch_kibana_yml: "kibana_default.yml.j2"
