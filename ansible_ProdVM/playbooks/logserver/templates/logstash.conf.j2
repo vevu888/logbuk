@@ -88,7 +88,6 @@ filter {
     code => '
       if event.get("[payload][timestamp]") < LogStash::Timestamp.new(Time.parse("2020-01-01"))
         event.tag("_date_range_error")
-# Do not replace the timestamp
 #      else
 #        event.set("@timestamp", event.get("[payload][timestamp]"))
       end
