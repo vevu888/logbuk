@@ -1,6 +1,6 @@
 LogAnalysis - Code changes
 
-1. Adjust logstash.conf
+1. logstash.conf (v1.01)
     a. Disable the replacing of @timestamp field with the creation timestamp
         * This allows the end-user to see if the module is showing a wrong timestamp or invalid timestamp
         * It improves troubleshooting on the modules side
