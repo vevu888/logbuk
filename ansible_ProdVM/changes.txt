@@ -1,7 +1,9 @@
 LogAnalysis - Code changes
 
-1. logstash.conf (v1.01)
-    a. Disable the replacing of @timestamp field with the creation timestamp
-        * This allows the end-user to see if the module is showing a wrong timestamp or invalid timestamp
-        * It improves troubleshooting on the modules side
-    b. Comment out lines 91 - 92.
+ELK - v1.01
+    1. Disable the replacing of @timestamp field with the creation timestamp
+        * End-users can see if the module is showing a wrong timestamp or invalid timestamp
+        * Improve troubleshooting on the modules side
+    2. Increase the Kibana export size (10Mb -> 30Mb)
+        * End-users can retrieve more data with a single export task
+        * Decrease system CPU load
