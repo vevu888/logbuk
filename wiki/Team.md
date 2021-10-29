@@ -18,7 +18,7 @@ Welche Termine und Modis wollen wir halten.
 
 # Sprint Refinement
 * Im Refinement wird zusammen, ScrumTeam + PO, PBIs erzeugt ggf vorhandene bewertet und in Approve gesetzt.
-
+* Sprint Iamge: 
 # Sprint Retroperspektive
 * Nutzen der Retroperspektive Funktion im AzureDevOps Bordes.
 * Rückblick; Was ist wie gelaufen +/-
