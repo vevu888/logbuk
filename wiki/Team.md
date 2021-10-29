@@ -18,7 +18,7 @@
 
 # Sprint Refinement
 * In Refinement, together, ScrumTeam + PO, PBIs are created if necessary existing ones are evaluated and put in Approve.
-* Sprint Image: 
+* Sprint Image: ![sprint7.png](/.attachments/sprint7-8bbaed13-afb1-43a4-9684-3928ffc9821d.png)
 # Sprint Retroperspective.
 * Use of Retroperspective feature in AzureDevOps Bordes.
 * Retrospective; What went how +/-.
@@ -60,5 +60,3 @@ For a Product Backlog Item (PBI) to be scheduled into a Sprint, the following cr
 * Dependencies are checked and named
 (related to input from "outside" or from other PBIs).
 * Acceptance criteria are listed
-
-Translated with www.DeepL.com/Translator (free version)
