@@ -7,19 +7,19 @@
 # Dates
 *Which dates and modes do we want to keep.
 * All dates in ScrumMode are available as **Teams** invitation. When you get an invitation, pay attention to this.
-* But since we work in EMIP in **ScrumModus** in general, we live with the two-week cycle.
+* But since we work in EMI in **ScrumModus** in general, we live with the two-week cycle.
 * We will have a **refinement** every weeks.  
-* The **SprintChange** will end with a **Review**/**Retroperspective** on Friday and start on Wednesday with the **Schedule**/ **SprintStart**. Start 9:00 a.m. each day. 
+* The **SprintChange** will end with a **Review**/**Retroperspective** on Friday and start on Monday with the **Planning**/ **SprintStart**. Start 9:00 a.m. each day. 
 * We keep a **Daily** with exception to the sprint change Friday / Monday. If it doesn't work, briefly email All. 
 
 # Storage locations
-* TeamSharelaufwerk: [AppFramework Sharpoint](https://teamshare.zeiss.com/content/90000244/3FM%20Dokumente/Forms/AllItems.aspx?RootFolder=%2Fcontent%2F90000244%2F3FM%20Dokumente%2FP%2E60%2E5%2E31%20SW%20Automatisierung%5FLogAnalysis&FolderCTID=0x012000ED2CB4E4C350164C8DCE7D544F370ACC&View=%7BEECBEA0A%2DA002%2D4285%2D88DC%2D496D5498BD56%7D)
+* TeamSharelaufwerk: [3FM Kiban Sharpoint](https://teamshare.zeiss.com/content/90000244/3FM%20Dokumente/Forms/AllItems.aspx?RootFolder=%2Fcontent%2F90000244%2F3FM%20Dokumente%2FP%2E60%2E5%2E31%20SW%20Automatisierung%5FLogAnalysis&FolderCTID=0x012000ED2CB4E4C350164C8DCE7D544F370ACC&View=%7BEECBEA0A%2DA002%2D4285%2D88DC%2D496D5498BD56%7D)
 * [TeamWIKI](https://wiki.zeiss.com/display/LITMI/Team+3FM+KIBANA)
 
 # Sprint Refinement
 * In Refinement, together, ScrumTeam + PO, PBIs are created if necessary existing ones are evaluated and put in Approve.
 * Sprint Image: 
-![sprint8.PNG](/.attachments/sprint8-fa27b4a2-71c8-4cdb-ba30-adb74275b172.PNG)
+![sprint8.PNG](/.attachments/sprint8-7ad3348b-e0ac-4ee8-b6d3-23cf0f59af28.PNG)
 # Sprint Retroperspective.
 * Use of Retroperspective feature in AzureDevOps Bordes.
 * Retrospective; What went how +/-.
