@@ -1,6 +1,0 @@
----
-# defaults file for fffm_zsh
-fffm_zsh_version: "0.1"
-fffm_zsh_header: "This file is managed by Ansible role fffm_zsh, all changes will be lost!"
-fffm_zsh_users: ['root']
-fffm_zsh_grml_config: yes
