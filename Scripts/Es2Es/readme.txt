@@ -1,0 +1,1 @@
+Migrate data and indices from an instance to another instance of ElasticSearch.
