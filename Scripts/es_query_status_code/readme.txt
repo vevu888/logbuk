@@ -1,3 +1,5 @@
+Rename from .txt to .sh and execute in linux shell.
+
 This linux script performs 3 queries in ElasticSearch.
 
 Each query returns a single value.
