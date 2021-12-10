@@ -19,7 +19,8 @@
 # Sprint Refinement
 * In Refinement, together, ScrumTeam + PO, PBIs are created if necessary existing ones are evaluated and put in Approve.
 * Sprint Image: 
-![sprint8.PNG](/.attachments/sprint8-7ad3348b-e0ac-4ee8-b6d3-23cf0f59af28.PNG)
+![sprint11.PNG](/.attachments/sprint11-be1701c6-556a-4d65-9687-51e7166dc048.PNG)
+
 # Sprint Retroperspective.
 * Use of Retroperspective feature in AzureDevOps Bordes.
 * Retrospective; What went how +/-.
@@ -39,16 +40,17 @@ How will we primarily identify PBIs.
 * Epics and features from the team must be described. Otherwise there is no Approved.
 * Epics and Features possibly UserStory contain Stakholder. These must be picked up at completion. 
 * In Refinement we will determine PBIs, if necessary also the StoryPoints. The DoR is to be achieved.
-* In Sprint Change, we will transfer PBIs from the Quarterly Sprint to the future Sprint according to Prio. However, PBIs must be DoR.
+* In Sprint Change, we will transfer PBIs from the Backlog to the future Sprint according to Prio. However, PBIs must be DoR.
 * PBIs (Userstory) will be set to Done by the team.
 * PBIs (Userstory) will be set to Closed by PO.
-* PBIs (Epic/Features) in a Quarterly Sprint must be Refined by the Team.
+* PBIs (Epic/Features) should be refined in a Quarterly Sprint by the Team.
  
 # Definition of Done (DoD).
 The following criteria must be met for a Product Backlog Item (PBI) to be marked as done in a Sprint:
 
-* PBI acceptances that cannot be described via Unittest must be completed by Manual Test / Test Plans.
+* PBI acceptances that must be completed by Manual Test / Test Plans.
 * When writing code, all public interfaces must be documented in the code. Prohibited are generated or empty documentation - except the inheritdoc tag.
+* PBI has proper documentation if no other artifact is delivered.
 
 # Definition of Ready (DoR)
 For a Product Backlog Item (PBI) to be scheduled into a Sprint, the following criteria must be met:
