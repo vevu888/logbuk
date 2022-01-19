@@ -1,0 +1,1 @@
+Specifications like module names or action names as well as translation
