@@ -13,8 +13,7 @@
 * We keep a **Daily** with exception to the sprint change Friday / Monday. If it doesn't work, briefly email All. 
 
 # Storage locations
-* TeamSharelaufwerk: [3FM Kiban Sharpoint](https://teamshare.zeiss.com/content/90000244/3FM%20Dokumente/Forms/AllItems.aspx?RootFolder=%2Fcontent%2F90000244%2F3FM%20Dokumente%2FP%2E60%2E5%2E31%20SW%20Automatisierung%5FLogAnalysis&FolderCTID=0x012000ED2CB4E4C350164C8DCE7D544F370ACC&View=%7BEECBEA0A%2DA002%2D4285%2D88DC%2D496D5498BD56%7D)
-* [TeamWIKI](https://wiki.zeiss.com/display/LITMI/Team+3FM+KIBANA)
+* TeamSharelaufwerk: [3FM Kiban Sharpoint]![sprint14.png](/.attachments/sprint14-2ac3dfb4-7703-4d0a-a027-58a18a0e9cc0.png)
 
 # Sprint Refinement
 * In Refinement, together, ScrumTeam + PO, PBIs are created if necessary existing ones are evaluated and put in Approve.
