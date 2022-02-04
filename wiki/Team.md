@@ -19,7 +19,7 @@
 * In Refinement, together, ScrumTeam + PO, PBIs are created if necessary existing ones are evaluated and put in Approve.
 * Sprint Image:
  
-![sprint14.jpg](/.attachments/sprint14-999fae0b-2ba6-4c57-928b-7f6055b2fc67.jpg)
+![sprint14.png](/.attachments/sprint14-ceffd574-ae82-4d2b-b2da-8842e6720252.png)
 
 # Sprint Retroperspective.
 * Use of Retroperspective feature in AzureDevOps Bordes.
