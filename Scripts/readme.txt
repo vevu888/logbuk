@@ -1,1 +1,0 @@
-Solutions developed by the team.
