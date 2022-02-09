@@ -1,1 +1,0 @@
-Documentation to be used internally, developed by our team developers.
