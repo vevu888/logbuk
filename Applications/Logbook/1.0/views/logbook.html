@@ -1,0 +1,243 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<form class="logbook-form" action="/logbook" method="post">
+    <div class="alignleft">
+        <table id="shift_tbl">
+            <tr>
+                <th>
+                    <b><span data-i18n-key="shift">Shift</span></b>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <select name="shift" id="shift" required>
+                        <option value="" data-i18n-key="select_option" disabled selected>Select option</option>
+                        <option value="early" data-i18n-key="early_shift">Early shift</option>
+                        <option value="late" data-i18n-key="late_shift">Late shift</option>
+                        <option value="night" data-i18n-key="night_shift">Night shift</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <table id="employee_tbl">
+            <tr>
+              <th>
+                <b><span data-i18n-key="employee">Employee</span></b>
+              </th>
+            </tr>
+            <tr>
+              <td>
+                <label for="employee"><i class="fas fa-plus-circle add_button"></i></label>
+                <input type="text" name="employee" required/>
+              </td>
+            </tr>
+          </table>
+        
+
+        </table>
+    </div>
+
+    <div class="alignright">
+        <table id="machine_tbl1">
+            <tr>
+                <th>
+                    <b><span data-i18n-key="machine">Machine</span></b>
+                </th>
+                <th>
+                    <b><span data-i18n-key="module">Module</span></b>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <select name="machine" id="machine" required>
+                        <option value="" data-i18n-key="select_option" disabled selected>Select option</option>
+                        <option value="vu1">VU1</option>
+                        <option value="vu2">VU2</option>
+                        <option value="oh">OH</option>
+                        <option value="rp">RP</option>
+                        <option value="scada">SCADA</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="halle">Halle</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="module" id="module"  placeholder="Module" required>
+                        <option data-machine="vu1" value="" data-i18n-key="select_option" disabled selected>Select option</option>
+                        <option data-machine="vu1" value="ama">AMA</option>
+                        <option data-machine="vu1" value="amv">AMV</option>
+                        <option data-machine="vu1" value="bm">BM</option>
+                        <option data-machine="vu1" value="cws">DSK</option>
+                        <option data-machine="vu1" value="ifm">IFM</option>
+                        <option data-machine="vu1" value="lm">LM</option>
+                        <option data-machine="vu1" value="ksy">KSY</option>
+                        <option data-machine="vu1" value="mts">MTS</option>
+                        <option data-machine="vu1" value="osc">OSC</option>
+                        <option data-machine="vu1" value="ps">PS</option>
+                        <option data-machine="vu1" value="rs">RS</option>
+                        <option data-machine="vu1" value="uls">ULS</option>
+                        <option data-machine="vu1" value="vi">VI</option>
+                        <option data-machine="vu1" value="d100">D100</option>
+                        <option data-machine="vu1" value="vessel">Vessel</option>
+                        <option data-machine="vu1" value="loadlock">Load Lock</option>
+                        <option data-machine="vu1" value="dynamic_link">Dynamic Link</option>
+                        <option data-machine="vu1" value="bbs/iw">BBS/IW</option>
+                        <option data-machine="vu1" value="info">Info</option>
+
+                        <option data-machine="vu2" value="" data-i18n-key="select_option" disabled selected>Select option</option>
+                        <option data-machine="vu2" value="ama">AMA</option>
+                        <option data-machine="vu2" value="amv">AMV</option>
+                        <option data-machine="vu2" value="bm">BM</option>
+                        <option data-machine="vu2" value="cws">DSK</option>
+                        <option data-machine="vu2" value="ifm">IFM</option>
+                        <option data-machine="vu2" value="lm">LM</option>
+                        <option data-machine="vu2" value="ksy">KSY</option>
+                        <option data-machine="vu2" value="mts">MTS</option>
+                        <option data-machine="vu2" value="osc">OSC</option>
+                        <option data-machine="vu2" value="ps">PS</option>
+                        <option data-machine="vu2" value="rs">RS</option>
+                        <option data-machine="vu2" value="uls">ULS</option>
+                        <option data-machine="vu2" value="vi">VI</option>
+                        <option data-machine="vu2" value="d100">D100</option>
+                        <option data-machine="vu2" value="vessel">Vessel</option>
+                        <option data-machine="vu2" value="loadlock">Load Lock</option>
+                        <option data-machine="vu2" value="dynamic_link">Dynamic Link</option>
+                        <option data-machine="vu2" value="bbs/iw">BBS/IW</option>
+                        <option data-machine="vu2" value="info">Info</option>
+
+                        <option data-machine="oh" value="" data-i18n-key="select_option" disabled selected>Select option</option>
+                        <option data-machine="oh" value="hts">HTS</option>
+                        <option data-machine="oh" value="osc">OSC</option>
+                        <option data-machine="oh" value="vtv">VTV</option>
+                        <option data-machine="oh" value="poh">POH</option>
+                        <option data-machine="oh" value="info">Info</option>
+
+                        <option data-machine="rp" value="" data-i18n-key="select_option" disabled selected>Select option</option>
+                        <option data-machine="rp" value="aj">AJ</option>
+                        <option data-machine="rp" value="hsa">HSA</option>
+                        <option data-machine="rp" value="hrs">HRS</option>
+                        <option data-machine="rp" value="osc">OSC</option>
+                        <option data-machine="rp" value="rts">RTS</option>
+                        <option data-machine="rp" value="d100">D100</option>
+                        <option data-machine="rp" value="info">Info</option>
+
+                        <option data-machine="scada" value="" data-i18n-key="select_option" disabled selected>Select option</option>
+                        <option data-machine="scada" value="lc">LC</option>
+                        <option data-machine="scada" value="mh">MH</option>
+                        <option data-machine="scada" value="ltds">LTDS</option>
+                        <option data-machine="scada" value="info">Info</option>
+                        
+                        <option data-machine="electronics" value="" data-i18n-key="select_option" disabled selected>Select option</option>
+                        <option data-machine="electronics" value="info">Info</option>
+                        <option data-machine="halle" value="" data-i18n-key="select_option" disabled selected>Select option</option>
+                        <option data-machine="halle" value="info">Info</option>
+                    <select>
+                </td>
+            </tr>
+        </table>
+
+        <table id="machine_tbl2">
+            <tr>
+                <th>
+                    <b><span data-i18n-key="action">Action</span></b>
+                </th>
+                <th>
+                    <b><span data-i18n-key="status">Status</span></b>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <select name="action" id="action" required>
+                        <option value="" data-i18n-key="select_option" disabled selected>Select option</option>
+                        <option value="commissioning">Commissioning</option>
+                        <option value="electrical_works">Electrical Works</option>
+                        <option value="installation">Installation</option>
+                        <option value="service">Service</option>
+                        <option value="test">Test</option>
+                        <option value="n/a">Not Applicable</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="status" id="status" required>
+                        <option value="" data-i18n-key="select_option" disabled selected>Select option</option>
+                        <option value="ongoing">Ongoing</option>
+                        <option value="done">Done</option>
+                        <option value="error">Error</option>
+                        <option value="not_performed">Not performed</option>
+                        <option value="monitoring">Monitoring</option>
+                        <option value="n/a">Not Applicable</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <table id="date_tbl">
+            <tr>
+                <th>
+                    <b><span data-i18n-key="start_date">Start date</span></b>
+                </th>
+                <th>
+                    <b><span data-i18n-key="end_date">End date</span></b>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="datetime-local" name="start_timestamp" id="start_timestamp" required>
+                </td>
+                
+                <td>
+                    <input type="datetime-local" name="end_timestamp" id="end_timestamp" required>
+                </td>
+            </tr>
+        </table>
+
+        <table id="description_tbl">
+            <tr>
+                <th>
+                    <b><span data-i18n-key="description">Description</span></b>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <textarea name="description" id="description" rows="7"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <input type="hidden" name="timestamp" id="timestamp" value="">
+
+    <button type="submit" class="confirm" id="confirm"><span data-i18n-key="submit">Submit</span></button>
+
+    <div class="msg">{{ msg }}</div>
+    
+</form>
+
+<script type="text/javascript">
+    function latestDateTime() {
+        var latest_DateTime = new Date().toISOString();
+        document.getElementById('timestamp').value = latest_DateTime;
+    }
+    // Refresh date and time each second
+    setInterval(function(){latestDateTime();}, 1000)
+</script>
+
+<script>
+    document.getElementById('machine').addEventListener('change', function() {
+        const selectedModuleValue = this.value;
+        
+        const module = document.getElementById('module');
+        module.querySelectorAll('option').forEach(function(opt, i) {
+            opt.style.display = opt.dataset.machine == selectedModuleValue ? 'block' : 'none';
+            if ((i == module.selectedIndex) && opt.dataset.machine != selectedModuleValue) {
+                module.querySelectorAll(`option[data-machine="${selectedModuleValue}"]`)[0].selected = true;
+            }
+        });
+    })
+</script>
+
+{% endblock %}

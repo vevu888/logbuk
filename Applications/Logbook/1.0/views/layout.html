@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+	<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="ajax.js"></script>
+	
+	<script type="text/javascript" src="language.js"></script>
+	<script type="text/javascript">
+      $(document).ready(function () {
+		// Input fields increment limitation
+		var maxField = 7;
+		// Add button selector
+		var addButton = $(".add_button");
+		// Input field wrapper
+		var emp = $("#employee_tbl");
+		// New input field html
+		var fieldHTML =
+			'<tr><td><label for="employee"><i class="fas fa-minus-circle remove_button"></i></label><input type="text" name="employee" required></td></tr>';
+		// Initial field counter is 1
+		var x = 1;
+
+		// Once add button is clicked
+		$(addButton).click(function () {
+			// Check maximum number of input fields
+			if (x < maxField) {
+			// Increment field counter
+			x++;
+			// Add field html
+			$(emp).append(fieldHTML);
+			}
+		});
+
+		// Once remove button is clicked
+		$(emp).on("click", ".remove_button", function (e) {
+			e.preventDefault();
+			// Remove field html
+			$(this).closest("tr").remove();
+			// Decrement field counter
+			x--;
+		});
+	});
+
+      
+    </script>
+	
+</head>
+
+<body class="loggedin">
+	<nav class="navtop">
+		<div>
+			<h1><img src='zeiss.logo.png'></img><b> &nbsp;&nbsp; 3FM <br /> &nbsp;&nbsp; Operator Logbook</b></h1>
+			<a href="/logbook"><i class="fas fa-file-signature"></i>Logbook</a>
+			<a href="/shift-transfer"><i class="fas fa-clipboard-list"></i>Shift transfer</a>
+			<a href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+		</div>
+	</nav>
+	<div class="content">
+		<h2>
+			<div id="textbox">
+				<p class="alignleft"><i class="fas fa-file-signature fa-lg"></i> {{ page_title }}</p>
+				<p class="alignright" style="text-align: right !important;">
+					<span data-i18n-key="welcome">Hello</span>, {{ username }}!
+					<select data-i18n-switcher class="locale-switcher" id="language">
+						<option value="en">EN</option>
+						<option value="de">DE</option>
+					</select>
+				</p>
+			</div>
+		</h2>
+
+		{% block content %}{% endblock %}
+	</div>
+</body>
+
+</html>

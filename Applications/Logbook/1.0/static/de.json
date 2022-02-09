@@ -1,0 +1,22 @@
+{
+    "title" : "3FM Operator",
+    "start_date" : "Start Datum",
+    "end_date" : "End Datum",
+    "machine" : "Maschine",
+    "module" : "Modul",
+    "action" : "Aktion",
+    "status" : "Status",
+    "creating" : "Erstellen",
+    "creating_logbook_entry" : "Logbucheintrag erstellen",
+    "description" : "Beschreibung",
+    "employee" : "Mitarbeiter",
+    "submit" : "Senden",
+    "initial_details" : "Initielle Details",
+    "final_details" : "Detaillierte Angaben",
+    "welcome" : "Willkommen",
+    "shift" : "Schicht",
+    "select_option" : "Wähle eine Option",
+    "early_shift" : "Frühschicht",
+    "late_shift" : "Spätschicht",
+    "night_shift" : "Nachtschicht"
+}
