@@ -127,3 +127,8 @@ app.get('/logout', function(request, response) {
 
 // Listen on port 3000 (http://localhost:3000/)
 app.listen(3001, '10.212.1.130');
+
+//Make the app run on localhost - JUST FOR LOCAL DEVELOPEMENT! 
+//REMOVE BEFORE COMMIT/PUSH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//app.listen(3000, '127.0.0.1');
+//console.log('Node server running on port 3000\nDo your thinks');

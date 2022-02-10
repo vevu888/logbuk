@@ -33,7 +33,7 @@
             <tr>
               <td>
                 <label for="employee"><i class="fas fa-plus-circle add_button"></i></label>
-                <input type="text" name="employee" required/>
+                <input type="text" name="employee" pattern="[a-zA-Z]+" minlength="3" maxlength="15"  required/>
               </td>
             </tr>
           </table>
@@ -203,7 +203,7 @@
             </tr>
             <tr>
                 <td>
-                    <textarea name="description" id="description" rows="7"></textarea>
+                    <textarea name="description" id="description" rows="7" required></textarea>
                 </td>
             </tr>
         </table>

@@ -20,7 +20,7 @@
 		var emp = $("#employee_tbl");
 		// New input field html
 		var fieldHTML =
-			'<tr><td><label for="employee"><i class="fas fa-minus-circle remove_button"></i></label><input type="text" name="employee" required></td></tr>';
+			'<tr><td><label for="employee"><i class="fas fa-minus-circle remove_button"></i></label><input type="text" name="employee" pattern="[a-zA-Z]+" minlength="3" maxlength="15" required></td></tr>';
 		// Initial field counter is 1
 		var x = 1;
 
