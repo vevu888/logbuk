@@ -1,0 +1,1 @@
+A folder that contains enduser data and info regarding their requirements which we will then use for developing solutions.
