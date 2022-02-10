@@ -240,4 +240,11 @@
     })
 </script>
 
+	
+<script>
+    //Do not let to select END-TIME in the PAST
+    var today = new Date().toISOString().slice(0, 16);
+    document.getElementsByName("end_timestamp")[0].min = today;
+</script>
+
 {% endblock %}
