@@ -1,16 +1,34 @@
-let elasticsearch = require('elasticsearch');
 
-let elasticClient = new elasticsearch.Client({
-    host: '10.212.1.130:19200',
-    log: 'info'
-});
+'use strict'
 
-// Get current month and year (UTC format)
+const { Client } = require('@elastic/elasticsearch')
+
+const client = new Client({ node: 'https://elastic:kowgKbHkoJAikKndWkIidsC2@0dc6c061f19442e2b9a83c7c132af36a.privatelink.westeurope.azure.elastic-cloud.com:9243' });
+
+
+// client.index({
+//     index: 'app',
+//     id: '131',
+//     body: {
+//         "Name": "22332Integrating Elasticsearch ",
+//         "Type": "222Tutorial",
+//         "Description": "2222222This is the text of our tutorial about using Elasticsearch in your Node.js application.",
+//     }
+// }, function(err, resp, status) {
+//     console.log(resp);
+// });
+
+// let elasticClient = new elasticsearch.Client({
+//     host: '0dc6c061f19442e2b9a83c7c132af36a.privatelink.westeurope.azure.elastic-cloud.com:9243',
+//     log: 'info'
+// });
+
+//Get current month and year (UTC format)
 let today = new Date();
 let Year = today.getFullYear();
 let Month = today.getMonth()+1; // the method returns 0-11 values but we have 1-12 months
 
-let indexName = `logbook-${Month}-${Year}`;
+let indexName = `app-${Month}-${Year}`;
 
 // Delete an existing index
 function deleteIndex() {
@@ -56,7 +74,7 @@ function addDocument(document) {
         body: {
             payload: document,
             '@timestamp': document['timestamp'],
-            'logbook' : 'v0.1'
+            'app' : 'v0.1'
         }
     });
 }

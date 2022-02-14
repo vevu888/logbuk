@@ -9,6 +9,7 @@
   "author": "George Focsa, Alexandru Manea",
   "license": "Luxoft DXC",
   "dependencies": {
+    "@elastic/elasticsearch": "^7.16.0",
     "activedirectory2": "^2.1.0",
     "cookie-parser": "^1.4.4",
     "elasticsearch": "^16.7.2",
