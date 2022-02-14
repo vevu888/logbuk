@@ -8,8 +8,7 @@ var cookieParser = require('cookie-parser');
 
 var secret_key = 'custom-value0123';
 
-// AD functionality111
-
+// AD functionality
 var ActiveDirectory = require('activedirectory2');
 var config = {
 	url: 'ldap://deokosdc023.cznet.zeiss.org',
@@ -77,7 +76,7 @@ app.post('/', function(request, response) {
 
 /* ====================================================================================================== */
 /* =========== Logbook Page =========== */
-app.get('/app', function(request, response) {
+app.get('/logbook', function(request, response) {
 	// Check if user is logged in
 	if (request.session.loggedin) {
 		// Split the username using '@' as separator
@@ -92,7 +91,7 @@ app.get('/app', function(request, response) {
 });
 
 var elastic = require('./libraries/elasticsearch');
-app.post('/app', function(request, response) {
+app.post('/logbook', function(request, response) {
     if (elastic.addDocument(request.body)) {
         response.send('Success')
     } else {
