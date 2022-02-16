@@ -190,7 +190,7 @@
                 </td>
                 
                 <td>
-                    <input type="datetime-local"  name="end_timestamp" id="end_timestamp" required>
+                    <input type="datetime-local" name="end_timestamp" id="end_timestamp" required>
                 </td>
             </tr>
         </table>
@@ -243,9 +243,21 @@
 	
 <script>
     //Do not let to select END-TIME and START TIME  in the PAST
+    var today = new Date();
+    var past = new Date(today.setDate(today.getDate() - 2)).toISOString().slice(0, 16);
     var today = new Date().toISOString().slice(0, 16);
+
+    document.getElementsByName("start_timestamp")[0].min = past;
+    document.getElementsByName("start_timestamp")[0].max = today;
+</script>
+
+<script>
+    var today = new Date();
+    var future = new Date(today.setDate(today.getDate() + 2)).toISOString().slice(0, 16);
+    var today = new Date().toISOString().slice(0, 16);
+
     document.getElementsByName("end_timestamp")[0].min = today;
-    document.getElementsByName("start_timestamp")[0].min = today;
+    document.getElementsByName("end_timestamp")[0].max = future;
 </script>
 
 {% endblock %}
