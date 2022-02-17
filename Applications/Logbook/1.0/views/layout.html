@@ -44,8 +44,6 @@
 			x--;
 		});
 	});
-
-      
     </script>
 	
 </head>
@@ -62,7 +60,10 @@
 	<div class="content">
 		<h2>
 			<div id="textbox">
-				<p class="alignleft"><i class="fas fa-file-signature fa-lg"></i> {{ page_title }}</p>
+				<p class="alignleft">
+					<span><i class="fas fa-file-signature fa-lg"></i> {{ page_title }}</span>
+					<span><a href="http://logs-3fm-sqetest.zeiss.org/kibana/app/dashboards#/view/94ce0870-73b8-11ec-a009-9df98081253a?_g=h@c823129" target="_blank"><i class="fas fa-search fa-lg"></i>Discover</a></span>
+				</p>
 				<p class="alignright" style="text-align: right !important;">
 					<span data-i18n-key="welcome">Hello</span>, {{ username }}!
 					<select data-i18n-switcher class="locale-switcher" id="language">

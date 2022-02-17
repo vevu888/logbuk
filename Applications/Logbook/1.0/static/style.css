@@ -130,18 +130,18 @@ body {
   font-weight: bold;
 }
 
-.navtop div a {
+a {
   padding: 0 20px;
   text-decoration: none;
   color: #141e8c;
   font-weight: bold;
 }
 
-.navtop div a i {
+a i {
   padding: 2px 8px 0 0;
 }
 
-.navtop div a:hover {
+a:hover {
   color: #4a536e;
 }
 
