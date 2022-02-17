@@ -14,6 +14,11 @@
             </tr>
             <tr>
                 <td>
+                    <label for="shift">
+                        <div class="tooltip"><i class="fas fa-info-circle"></i>
+                            <span class="tooltiptext" data-i18n-key="shift_info"></span>
+                        </div>
+                    </label>
                     <select name="shift" id="shift" required>
                         <option value="" data-i18n-key="select_option" disabled selected>Select option</option>
                         <option value="early" data-i18n-key="early_shift">Early shift</option>
@@ -32,8 +37,13 @@
             </tr>
             <tr>
               <td>
-                <label for="employee"><i class="fas fa-plus-circle add_button"></i></label>
-                <input type="text" name="employee" required/>
+                <label for="employee">
+                    <i class="fas fa-plus-circle add_button" style="margin-left: 204px;"></i>
+                    <div class="tooltip" style="margin-left: 10px;"><i class="fas fa-info-circle"></i>
+                        <span class="tooltiptext" data-i18n-key="employee_info"></span>
+                    </div>
+                </label>
+                <input type="text" name="employee" pattern="^[a-zA-Z]+\s?[a-zA-Z]+$" minlength="3" maxlength="15" required/>
               </td>
             </tr>
           </table>
@@ -54,6 +64,11 @@
             </tr>
             <tr>
                 <td>
+                    <label for="machine">
+                        <div class="tooltip"><i class="fas fa-info-circle"></i>
+                            <span class="tooltiptext" data-i18n-key="machine_info"></span>
+                        </div>
+                    </label>
                     <select name="machine" id="machine" required>
                         <option value="" data-i18n-key="select_option" disabled selected>Select option</option>
                         <option value="vu1">VU1</option>
@@ -66,7 +81,12 @@
                     </select>
                 </td>
                 <td>
-                    <select name="module" id="module"  placeholder="Module" required>
+                    <label for="module">
+                        <div class="tooltip"><i class="fas fa-info-circle"></i>
+                            <span class="tooltiptext" data-i18n-key="module_info"></span>
+                        </div>
+                    </label>
+                    <select name="module" id="module" placeholder="Module" required>
                         <option data-machine="vu1" value="" data-i18n-key="select_option" disabled selected>Select option</option>
                         <option data-machine="vu1" value="ama">AMA</option>
                         <option data-machine="vu1" value="amv">AMV</option>
@@ -151,6 +171,11 @@
             </tr>
             <tr>
                 <td>
+                    <label for="action">
+                        <div class="tooltip"><i class="fas fa-info-circle"></i>
+                            <span class="tooltiptext" data-i18n-key="action_info"></span>
+                        </div>
+                    </label>
                     <select name="action" id="action" required>
                         <option value="" data-i18n-key="select_option" disabled selected>Select option</option>
                         <option value="commissioning">Commissioning</option>
@@ -162,6 +187,11 @@
                     </select>
                 </td>
                 <td>
+                    <label for="status">
+                        <div class="tooltip"><i class="fas fa-info-circle"></i>
+                            <span class="tooltiptext" data-i18n-key="status_info"></span>
+                        </div>
+                    </label>
                     <select name="status" id="status" required>
                         <option value="" data-i18n-key="select_option" disabled selected>Select option</option>
                         <option value="ongoing">Ongoing</option>
@@ -186,10 +216,20 @@
             </tr>
             <tr>
                 <td>
+                    <label for="start_timestamp">
+                        <div class="tooltip"><i class="fas fa-info-circle"></i>
+                            <span class="tooltiptext" data-i18n-key="start_timestamp_info"></span>
+                        </div>
+                    </label>
                     <input type="datetime-local" name="start_timestamp" id="start_timestamp" required>
                 </td>
                 
                 <td>
+                    <label for="end_timestamp">
+                        <div class="tooltip"><i class="fas fa-info-circle"></i>
+                            <span class="tooltiptext" data-i18n-key="end_timestamp_info"></span>
+                        </div>
+                    </label>
                     <input type="datetime-local" name="end_timestamp" id="end_timestamp" required>
                 </td>
             </tr>
@@ -203,7 +243,7 @@
             </tr>
             <tr>
                 <td>
-                    <textarea name="description" id="description" rows="7"></textarea>
+                    <textarea name="description" id="description" rows="7" required></textarea>
                 </td>
             </tr>
         </table>
@@ -238,6 +278,26 @@
             }
         });
     })
+</script>
+
+	
+<script>
+    //Do not let to select END-TIME and START TIME  in the PAST
+    var today = new Date();
+    var past = new Date(today.setDate(today.getDate() - 3)).toISOString().slice(0, 16);
+    var today = new Date().toISOString().slice(0, 16);
+
+    document.getElementsByName("start_timestamp")[0].min = past;
+    document.getElementsByName("start_timestamp")[0].max = today;
+</script>
+
+<script>
+    var today = new Date();
+    var future = new Date(today.setDate(today.getDate() + 3)).toISOString().slice(0, 16);
+    var today = new Date().toISOString().slice(0, 16);
+
+    document.getElementsByName("end_timestamp")[0].min = today;
+    document.getElementsByName("end_timestamp")[0].max = future;
 </script>
 
 {% endblock %}
