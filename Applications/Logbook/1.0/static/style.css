@@ -242,6 +242,53 @@ body.loggedin {
   transition: border-color 0.5s;
 }
 
+/* Info boxes */
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: flex;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
 
 /* Style for Form */
 /*------------------------------------------------------------------------------------------------------------------*/
@@ -257,7 +304,7 @@ body.loggedin {
 
 /* Generic table style */
 table {
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 30px;
   margin-left: 10px;
   width: 100%;
@@ -267,7 +314,7 @@ table {
 table td > label {
   display: flex !important;
   float: right;
-  margin-right: 60px;
+  margin-right: 70px;
   color: #888888;
 }
 
@@ -310,7 +357,11 @@ table td > textarea {
   width: 15%;
 }
 
-#description_tbl {
+#employee_tbl, #machine_tbl2, #date_tbl, #description_tbl {
+  margin-top: -5px;
+}
+
+#description_tbl, #shift_tbl, #machine_tbl1, #machine_tbl2, #date_tbl, #description_tbl {
   margin-bottom: unset;
 }
 
