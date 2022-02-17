@@ -244,7 +244,7 @@
 <script>
     //Do not let to select END-TIME and START TIME  in the PAST
     var today = new Date();
-    var past = new Date(today.setDate(today.getDate() - 2)).toISOString().slice(0, 16);
+    var past = new Date(today.setDate(today.getDate() - 3)).toISOString().slice(0, 16);
     var today = new Date().toISOString().slice(0, 16);
 
     document.getElementsByName("start_timestamp")[0].min = past;
@@ -253,7 +253,7 @@
 
 <script>
     var today = new Date();
-    var future = new Date(today.setDate(today.getDate() + 2)).toISOString().slice(0, 16);
+    var future = new Date(today.setDate(today.getDate() + 3)).toISOString().slice(0, 16);
     var today = new Date().toISOString().slice(0, 16);
 
     document.getElementsByName("end_timestamp")[0].min = today;
