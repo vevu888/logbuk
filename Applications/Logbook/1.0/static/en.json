@@ -18,5 +18,13 @@
     "select_option" : "Select option",
     "early_shift" : "Early shift",
     "late_shift" : "Late shift",
-    "night_shift" : "Night shift"
+    "night_shift" : "Night shift",
+    "shift_info" : "The shift when the intervention started",
+    "employee_info" : "Max. 2 words separated by space",
+    "machine_info" : "The corresponding machine",
+    "module_info" : "An entry must include a module",
+    "action_info" : "The intervention performed",
+    "status_info" : "The status of intervention performed",
+    "start_timestamp_info" : "When the intervention started",
+    "end_timestamp_info" : "When the intervention ended"
 }

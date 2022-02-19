@@ -1,2 +1,0 @@
-This script scans the system to discover if it's vulnerable to the CVE-2021-44228 exploit.
-Rename from .txt to .sh and execute in linux shell.

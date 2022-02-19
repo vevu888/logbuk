@@ -20,7 +20,7 @@
 		var emp = $("#employee_tbl");
 		// New input field html
 		var fieldHTML =
-			'<tr><td><label for="employee"><i class="fas fa-minus-circle remove_button"></i></label><input type="text" name="employee" required></td></tr>';
+			'<tr><td><label for="employee"><i class="fas fa-minus-circle remove_button"></i></label><input type="text" name="employee" pattern="[a-zA-Z]+" minlength="3" maxlength="15" required></td></tr>';
 		// Initial field counter is 1
 		var x = 1;
 
@@ -44,8 +44,6 @@
 			x--;
 		});
 	});
-
-      
     </script>
 	
 </head>
@@ -62,7 +60,10 @@
 	<div class="content">
 		<h2>
 			<div id="textbox">
-				<p class="alignleft"><i class="fas fa-file-signature fa-lg"></i> {{ page_title }}</p>
+				<p class="alignleft">
+					<span><i class="fas fa-file-signature fa-lg"></i> {{ page_title }}</span>
+					<span><a href="http://logs-3fm-sqetest.zeiss.org/kibana/app/dashboards#/view/94ce0870-73b8-11ec-a009-9df98081253a?_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-15m%2Cto%3Anow))" target="_blank"><i class="fas fa-search fa-lg"></i>Discover</a></span>
+				</p>
 				<p class="alignright" style="text-align: right !important;">
 					<span data-i18n-key="welcome">Hello</span>, {{ username }}!
 					<select data-i18n-switcher class="locale-switcher" id="language">

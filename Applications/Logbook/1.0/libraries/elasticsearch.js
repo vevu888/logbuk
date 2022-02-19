@@ -1,8 +1,11 @@
 'use strict'
 let elasticsearch = require('elasticsearch');
-const { Client } = require('@elastic/elasticsearch')
+const { Client, Connection, ConnectionPool } = require('@elastic/elasticsearch');
+const { ElasticsearchClientError } = require('@elastic/elasticsearch/lib/errors');
+const HttpConnector = require('elasticsearch/src/lib/connectors/http');
 
 const client = new Client({ node: 'https://elastic:kowgKbHkoJAikKndWkIidsC2@0dc6c061f19442e2b9a83c7c132af36a.privatelink.westeurope.azure.elastic-cloud.com:9243' });
+
 
 // let elasticsearch = require('elasticsearch');
 
@@ -17,18 +20,28 @@ let Year = today.getFullYear();
 let Month = today.getMonth()+1; // the method returns 0-11 values but we have 1-12 months
 
 let indexName = `app-${Month}-${Year}`;
+try {
+   ConnectionPool   ;
+   } catch (error) {
+       console.log(error); //here we handle the error caused in the try block
+   }
+    finally {
+   HttpConnector ;
+   }
 
-// client.index({
-//     index: indexName,
-//     id: '9119',
-//     body: {
-//         "Name": "22332Integrating Eljasticsearch ",
-//         "Type": "222Tutorial",
-//         "Description": "2222222This is the text of our tutorial about using Elasticsearch in your Node.js application.",
-//     }
-// }, function(err, resp, status) {
-//     console.log(resp);
-// });
+client.index({
+    index: indexName,
+    id: '9119',
+    body: {
+        "Name": "22332Integrating Eljasticsearch ",
+        "Type": "222Tutorial",
+        "Description": "2222222This is the text of our tutorial about using Elasticsearch in your Node.js application.",
+   }
+}, 
+function(err, resp, status) {
+    console.error(resp);
+});
+
 
 // let elasticClient = new elasticsearch.Client({
 //     host: '0dc6c061f19442e2b9a83c7c132af36a.privatelink.westeurope.azure.elastic-cloud.com:9243',
