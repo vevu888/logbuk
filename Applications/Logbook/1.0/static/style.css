@@ -16,7 +16,7 @@ body {
   background-color: #ffffff;
   box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
   margin: 100px auto;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .login h1 {
@@ -66,7 +66,7 @@ body {
   height: 50px;
   background-color: #141e8c;
   color: #ffffff;
-  border-radius: 10px 0 0 10px;
+  border-radius: 5px 0 0 5px;
 }
 
 .login form input[type="password"], .login form input[type="text"], .login form input[type="email"] {
@@ -75,7 +75,7 @@ body {
   border: 1px solid #dee0e4;
   margin-bottom: 20px;
   padding: 0 15px;
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 5px 5px 0;
 }
 
 .login form input[type="submit"] {
@@ -88,7 +88,7 @@ body {
   font-weight: bold;
   color: #ffffff;
   transition: background-color 0.2s;
-  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 5px 5px;
 }
 
 .login form input[type="submit"]:hover {
@@ -130,18 +130,18 @@ body {
   font-weight: bold;
 }
 
-.navtop div a {
+a {
   padding: 0 20px;
   text-decoration: none;
   color: #141e8c;
   font-weight: bold;
 }
 
-.navtop div a i {
+a i {
   padding: 2px 8px 0 0;
 }
 
-.navtop div a:hover {
+a:hover {
   color: #4a536e;
 }
 
@@ -168,7 +168,7 @@ body.loggedin {
   padding: 25px;
   background-color: #fff;
   box-shadow: 10px 10px 8px #888888;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 
 .content > p table td, .content > div table td {
@@ -242,6 +242,53 @@ body.loggedin {
   transition: border-color 0.5s;
 }
 
+/* Info boxes */
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: flex;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
 
 /* Style for Form */
 /*------------------------------------------------------------------------------------------------------------------*/
@@ -250,14 +297,14 @@ body.loggedin {
   padding: 1px 20px;
   height: 600px;
   box-shadow: 10px 10px 8px #888888;
-  border-radius: 15px;
+  border-radius: 5px;
   box-sizing: border-box;
   overflow: hidden;
 }
 
 /* Generic table style */
 table {
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 30px;
   margin-left: 10px;
   width: 100%;
@@ -267,7 +314,7 @@ table {
 table td > label {
   display: flex !important;
   float: right;
-  margin-right: 60px;
+  margin-right: 70px;
   color: #888888;
 }
 
@@ -281,7 +328,7 @@ table td > input, table td > select {
   max-width: 195px;
   border-top: 10px;
   padding: 5px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 2px solid #dddddd;
   background: #ffffff;
   outline: none;
@@ -299,7 +346,7 @@ table td > textarea {
   height: 160px;
   box-sizing: border-box;
   border: 2px solid #ccc;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: #f8f8f8;
   font-size: 16px;
   resize: none;
@@ -310,7 +357,11 @@ table td > textarea {
   width: 15%;
 }
 
-#description_tbl {
+#employee_tbl, #machine_tbl2, #date_tbl, #description_tbl {
+  margin-top: -5px;
+}
+
+#description_tbl, #shift_tbl, #machine_tbl1, #machine_tbl2, #date_tbl, #description_tbl {
   margin-bottom: unset;
 }
 
@@ -324,7 +375,7 @@ table td > textarea {
   width: 100%;
   border: none;
   outline: none;
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
   margin: auto;
   }

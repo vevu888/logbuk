@@ -18,5 +18,13 @@
     "select_option" : "Wähle eine Option",
     "early_shift" : "Frühschicht",
     "late_shift" : "Spätschicht",
-    "night_shift" : "Nachtschicht"
+    "night_shift" : "Nachtschicht",
+    "shift_info" : "Die Schicht, als die Intervention begann",
+    "employee_info" : "Max. 2 Wörter durch Leerzeichen getrennt",
+    "machine_info" : "Die entsprechende Maschine",
+    "module_info" : "Ein Eintrag muss ein Modul enthalten",
+    "action_info" : "Der durchgeführte Eingriff",
+    "status_info" : "Der Status der durchgeführten Intervention",
+    "start_timestamp_info" : "Als der Eingriff begann",
+    "end_timestamp_info" : "Als die Intervention endete"
 }
