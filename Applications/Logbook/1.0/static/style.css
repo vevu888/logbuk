@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: #f3f4f7;
+  background-color: #e7c19e;
   margin: 0;
 }
 
@@ -131,14 +131,14 @@ body {
 }
 
 a {
-  padding: 0 20px;
+  padding: 1px 1px 50px 0 ;
   text-decoration: none;
-  color: #141e8c;
+  color: #14168c;
   font-weight: bold;
 }
 
 a i {
-  padding: 2px 8px 0 0;
+  padding: 3px 8px 0 0;
 }
 
 a:hover {

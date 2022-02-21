@@ -29,18 +29,18 @@ try {
    HttpConnector ;
    }
 
-client.index({
-    index: indexName,
-    id: '9119',
-    body: {
-        "Name": "22332Integrating Eljasticsearch ",
-        "Type": "222Tutorial",
-        "Description": "2222222This is the text of our tutorial about using Elasticsearch in your Node.js application.",
-   }
-}, 
-function(err, resp, status) {
-    console.error(resp);
-});
+// client.index({
+//     index: indexName,
+//     id: '9119',
+//     body: {
+//         "Name": "22332Integrating Eljasticsearch ",
+//         "Type": "222Tutorial",
+//         "Description": "2222222This is the text of our tutorial about using Elasticsearch in your Node.js application.",
+//    }
+// }, 
+// function(err, resp, status) {
+//     console.error(resp);
+// });
 
 
 // let elasticClient = new elasticsearch.Client({
